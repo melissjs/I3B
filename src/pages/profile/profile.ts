@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the LoginPage page.
+ * Generated class for the ProfilePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,17 +10,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html',
+  selector: 'page-profile',
+  templateUrl: 'profile.html',
 })
-export class LoginPage {
+export class ProfilePage {
 
-  constructor(private navCtrl: NavController, private navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  navigateToPage(pageName: string) {
-    this.navCtrl.setRoot(pageName);
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ProfilePage');
   }
-
 
 }

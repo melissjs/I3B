@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>LoginPage</ion-title>
+  <ion-navbar color='dkgray'>
+    <ion-title>Animal Rescue Mobile</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -17,10 +17,23 @@
   <img src='assets/img/logo.png' alt='logo' class='logo'>
   <ion-card>
     <ion-card-content>
+
       <ion-item>
         <ion-label floating>Email Address</ion-label>
         <ion-input type='text'></ion-input>
       </ion-item>
+
+      <ion-item>
+          <ion-label floating>Password</ion-label>
+          <ion-input type='password'></ion-input>
+      </ion-item>
+
+      <ion-row>
+        <div>
+          <button ion-button color='ltgray' (click)='navigateToPage("RegisterPage")'>Register</button>
+          <button ion-button color='ltgray' (click)='navigateToPage("TabsPage")'>Login</button>
+      </div>
+      </ion-row>
     </ion-card-content>
   </ion-card>
 </ion-content>
