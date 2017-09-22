@@ -38,4 +38,24 @@ export class LoginFormComponent {
     }
   }
 
+
+  async login() {
+    try {
+      const result = await this.afAuth.auth.signInWithEmailAndPassword(this.account.email, this.account.password);
+      this.toast.create({
+        message: 'User logged in',
+        duration: 3000
+      }).present();
+      this.navigateToPage("TabsPage")
+      console.log(result);
+    }
+    catch (e) {
+      console.error(e);
+      this.toast.create({
+        message: e.message,
+        duration: 3000
+      }).present();
+    }
+  }
+
 }
