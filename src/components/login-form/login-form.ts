@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Account } from '../../models/account/account.interface';
@@ -10,8 +10,10 @@ import { Account } from '../../models/account/account.interface';
 export class LoginFormComponent {
 
   account = {} as Account;
+  @Output() loginStatus: EventEmitter<any>;
 
   constructor(private toast: ToastController, private navCtrl: NavController, private navParams: NavParams, private afAuth: AngularFireAuth) {
+    this.loginStatus =  new EventEmitter<any>();
   }
 
   navigateToPage(pageName: string) {
