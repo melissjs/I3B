@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Account } from '../../models/account/account.interface';
+import { LoginResponse } from '../../models/login/login-response.interface';
 
 @Component({
   selector: 'login-form',
@@ -10,10 +11,10 @@ import { Account } from '../../models/account/account.interface';
 export class LoginFormComponent {
 
   account = {} as Account;
-  @Output() loginStatus: EventEmitter<any>;
+  @Output() loginStatus: EventEmitter<LoginResponse>;
 
   constructor(private toast: ToastController, private navCtrl: NavController, private navParams: NavParams, private afAuth: AngularFireAuth) {
-    this.loginStatus =  new EventEmitter<any>();
+    this.loginStatus =  new EventEmitter<LoginResponse>();
   }
 
   navigateToPage(pageName: string) {
@@ -41,20 +42,18 @@ export class LoginFormComponent {
 
   async login() {
     try {
-      const result = await this.afAuth.auth.signInWithEmailAndPassword(this.account.email, this.account.password);
-      this.toast.create({
-        message: 'User logged in',
-        duration: 3000
-      }).present();
-      this.navigateToPage("TabsPage")
-      console.log(result);
+      const result: LoginResponse = 
+      { result: await this.afAuth.auth.signInWithEmailAndPassword(this.account.email, this.account.password)}
+      this.loginStatus.emit(result);
+      console.log('result', result);
+      console.log('result.error', result.error);
     }
     catch (e) {
-      console.error(e);
-      this.toast.create({
-        message: e.message,
-        duration: 3000
-      }).present();
+      const error: LoginResponse = {
+        error: e
+      }
+      this.loginStatus.emit(error);
+      // console.error('login resp from component', error.error.message);
     }
   }
 
