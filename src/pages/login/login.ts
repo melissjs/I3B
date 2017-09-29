@@ -23,7 +23,7 @@ export class LoginPage {
         message: `Welcome to Animal Rescue Mobile, ${event.result.email}`,
         duration: 3000
       }).present();
-      this.navCtrl.setRoot('ProfilePage');
+      this.navCtrl.setRoot('EditProfilePage');
     }
     else {
       this.toast.create({

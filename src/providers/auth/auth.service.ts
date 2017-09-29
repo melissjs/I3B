@@ -11,6 +11,12 @@ export class AuthService {
   constructor(private afAuth: AngularFireAuth) {
   }
 
+  // Get user
+  getAuthenticatedUser() {
+    return this.afAuth.authState;
+  }
+
+  // Register user
     async register(account: Account) {
     try {
       return <LoginResponse> {
@@ -24,6 +30,7 @@ export class AuthService {
     }
   }
 
+  // Login user
   async signInWithEmailAndPassword(account: Account) {
     try {
       return <LoginResponse> {
