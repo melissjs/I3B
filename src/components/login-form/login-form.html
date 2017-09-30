@@ -1,21 +1,29 @@
-<ion-card>
-  <ion-card-content>
+<form #loginForm='ngForm' novalidate>
+  <ion-card>
+    <ion-card-content>
 
-    <ion-item>
-      <ion-label floating>Email Address</ion-label>
-      <ion-input type='email' [(ngModel)]='account.email'></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label floating>Email Address</ion-label>
+        <ion-input type='email' [(ngModel)]='account.email' name='email' #email='ngModel' required pattern='^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$'></ion-input>
+      </ion-item>
 
-    <ion-item>
-        <ion-label floating>Password</ion-label>
-        <ion-input type='password' [(ngModel)]='account.password'></ion-input>
-    </ion-item>
+      <div padding *ngIf='email.invalid && email.dirty'>
+        <span>
+          Email is not valid.
+        </span>
+      </div>
 
-    <ion-row class='login-form__buttons'>
-      <div>
-        <button ion-button color='ltgray' (click)='register()'>Register</button>
-        <button ion-button color='ltgray' (click)='login()'>Login</button>
-    </div>
-    </ion-row>
-  </ion-card-content>
-</ion-card>
+      <ion-item>
+          <ion-label floating>Password</ion-label>
+          <ion-input type='password' [(ngModel)]='account.password' name='password'></ion-input>
+      </ion-item>
+
+      <ion-row class='login-form__buttons'>
+        <div>
+          <button ion-button color='ltgray' (click)='register()'>Register</button>
+          <button ion-button color='ltgray' (click)='login()'>Login</button>
+      </div>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+</form>
