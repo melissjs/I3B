@@ -8,20 +8,26 @@
       </ion-item>
 
       <div padding *ngIf='email.invalid && email.dirty'>
-        <span>
+        <span class='global__input-error'>
           Email is not valid.
         </span>
       </div>
 
       <ion-item>
           <ion-label floating>Password</ion-label>
-          <ion-input type='password' [(ngModel)]='account.password' name='password'></ion-input>
+          <ion-input type='password' [(ngModel)]='account.password' name='password' #password='ngModel' required pattern='[a-zA-Z0-9!@#$%^&*]{6,20}$'></ion-input>
       </ion-item>
+
+      <div padding *ngIf='password.invalid && password.dirty'>
+        <span class='global__input-error'>
+          Password must have 6 to 20 characters.
+        </span>
+      </div>
 
       <ion-row class='login-form__buttons'>
         <div>
-          <button ion-button color='ltgray' (click)='register()'>Register</button>
-          <button ion-button color='ltgray' (click)='login()'>Login</button>
+          <button ion-button color='ltgray' (click)='register()' [disabled]='loginForm.invalid'>Register</button>
+          <button ion-button color='ltgray' (click)='login()' [disabled]='loginForm.invalid'>Login</button>
       </div>
       </ion-row>
     </ion-card-content>
