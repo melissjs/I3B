@@ -22,6 +22,10 @@ export class LoginFormComponent {
     this.navCtrl.setRoot(pageName);
   }
 
+  tryNull() {
+    
+  }
+
   async register() {
     const loginResponse = await this.auth.register(this.account);
     this.loginStatus.emit(loginResponse);

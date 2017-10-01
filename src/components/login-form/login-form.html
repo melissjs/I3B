@@ -1,4 +1,4 @@
-<form #loginForm='ngForm' novalidate>
+<form #loginForm='ngForm' novalidate (keyup.enter)='login()'>
   <ion-card>
     <ion-card-content>
 
@@ -26,6 +26,7 @@
 
       <ion-row class='login-form__buttons'>
         <div>
+          <button (click)='tryNull()' style="display:none">hidden submit</button>
           <button ion-button color='ltgray' (click)='register()' [disabled]='loginForm.invalid'>Register</button>
           <button ion-button color='ltgray' (click)='login()' [disabled]='loginForm.invalid'>Login</button>
       </div>
