@@ -11,20 +11,11 @@ import { LoadingController, Loading } from 'ionic-angular';
 })
 export class ProfileViewComponent implements OnInit {
 
-  private authUser;
+  private authUser: User;
   public userProfile: Profile;
   private loader: Loading;
 
   @Output() existingProfile: EventEmitter<Profile>;
-
-  constructor(private loading: LoadingController, private data: DataService, private auth: AuthService) {
-
-    this.existingProfile = new EventEmitter<Profile>();
-
-    this.loader = this.loading.create({
-      content: 'Loading profile...'
-    });
-  }
 
   ngOnInit(): void {
     this.loader.present();
@@ -40,6 +31,13 @@ export class ProfileViewComponent implements OnInit {
     })
   }
 
+  constructor(private loading: LoadingController, private data: DataService, private auth: AuthService) {
 
-  
+    this.existingProfile = new EventEmitter<Profile>();
+
+    this.loader = this.loading.create({
+      content: 'Loading profile...'
+    });
+  }
+
 }
