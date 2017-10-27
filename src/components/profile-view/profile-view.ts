@@ -3,7 +3,7 @@ import { AuthService } from '../../providers/auth/auth.service';
 import { DataService } from '../../providers/data/data.service';
 import { User } from 'firebase/app';
 import { Profile } from '../../models/profile/profile.interface';
-import { LoadingController, Loading } from 'ionic-angular';
+import { LoadingController, Loading, Content } from 'ionic-angular';
 
 @Component({
   selector: 'profile-view',
