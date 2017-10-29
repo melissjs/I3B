@@ -9,7 +9,7 @@
 
 
 <ion-content padding>
-<chat-message *ngFor='let chat of messageList; let i=index' [chatMessage]='chat'></chat-message>
+<chat-message *ngFor='let chat of messageList; let i=index' [chatMessage]='chat' [chatIndex]='i'></chat-message>
 </ion-content>
 
 <ion-footer>
