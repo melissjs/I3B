@@ -8,7 +8,7 @@ import { Message } from '../../models/message/message.interface';
 import { AuthService } from '../../providers/auth/auth.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
-import 'rxjs/add/observable/of';
+// import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/first';
 
 @Injectable()
@@ -39,6 +39,18 @@ export class ChatService {
 
   getChats(userTwoId: string) {
     return this.auth.getAuthenticatedUser()
+    .map(auth => auth.uid)
+    .mergeMap(uid => this.database.list(`user-messages/${uid}/${userTwoId}`))
+    .mergeMap(chats => {
+      return Observable.forkJoin(
+        chats.map(chat => this.database.object(`/messages/${chat.$key}`)
+        .first()),
+        (...vals: Message[]) => {
+          console.log(vals);
+          return vals;
+        }
+      )
+    })
   }
 
 }
