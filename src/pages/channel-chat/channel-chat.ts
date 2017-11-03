@@ -23,4 +23,12 @@ export class ChannelChatPage {
     this.channelMessages = this.chat.getChannelChatReference(this.channel.$key);
   }
 
+  sendMessage(content: string) {
+    let channelMessage: ChannelMessage = {
+      content: content
+    }
+    this.chat.sendChannelChatMessage(this.channel.$key, channelMessage);
+  }
+
+
 }
