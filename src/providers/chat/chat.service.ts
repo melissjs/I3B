@@ -53,4 +53,21 @@ export class ChatService {
     })
   }
 
+  getLastMessagesForUser(): Observable<Message[]> {
+    return this.auth.getAuthenticatedUser()
+    .map(auth => auth.uid)
+    .mergeMap(authId => this.database.list(`/last-messages/${authId}`))
+    .mergeMap(messageIds => {
+      return Observable.forkJoin(
+        messageIds.map(message => {
+          return this.database.object(`/messages/${message.key}`)
+          .first()
+        }),
+        (...values) => {
+          return values;
+        }
+      )
+    })
+  }
+
 }
