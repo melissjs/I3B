@@ -1,4 +1,4 @@
-<ion-item no-lines class='chat-message__message-right' *ngIf='chatMessage.userToId === userId; else from'>
+<ion-item no-lines class='chat-message__message-right' *ngIf='chatMessage.userFromId === userId; else from'>
   <ion-avatar item-right>
     <img src='assets/img/avatar.png' alt=''>
   </ion-avatar>
@@ -11,7 +11,7 @@
       <ion-avatar item-left>
         <img src='assets/img/avatar.png' alt=''>
       </ion-avatar>
-      <h2>{{chatMessage?.userToProfile?.firstName}} {{chatMessage?.userToProfile?.lastName}}</h2>
+      <h2>{{chatMessage?.userFromProfile?.firstName}} {{chatMessage?.userFromProfile?.lastName}}</h2>
       <p>{{chatMessage.content}}</p>
     </ion-item>
 </ng-template>
